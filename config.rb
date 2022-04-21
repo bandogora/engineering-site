@@ -46,7 +46,19 @@ page '/*.txt', layout: false
 configure :build do
   activate :asset_hash
   activate :minify_css
-  activate :minify_html
   activate :minify_javascript
-  activate :imageoptim
+  activate :imageoptim do |options|
+    options.manifest = true
+    # Silence problematic image_optim workers
+    options.skip_missing_workers = true
+
+    # Setting these to true or nil will let options determine them (recommended)
+    options.nice = true
+    options.threads = true
+
+    # Image extensions to attempt to compress
+    options.image_extensions = %w[.svg]
+    options.pngout = false
+    ENV['SVGO_BIN'] = 'node_modules/svgo/bin/svgo'
+  end
 end

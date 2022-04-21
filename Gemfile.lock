@@ -126,6 +126,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  image_optim
   middleman (~> 4.2)
   middleman-autoprefixer
   middleman-imageoptim (~> 0.3.0)
