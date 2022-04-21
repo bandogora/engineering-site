@@ -1,0 +1,29 @@
+$fa-font-path: '../fonts';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/regular';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/solid';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/v4-shims';
+
+@mixin flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+body {
+  align-content: normal;
+  align-items: stretch;
+  background-color: #00cccc;
+  @include flexbox;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  min-height: 100vh;
+  text-align: center;
+}
+
+footer, header {
+  background-color: #343434;
+}
+
