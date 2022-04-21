@@ -17,6 +17,6 @@ jobs:
       with:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Install Imageoptim Binaries
-      run: sudo apt-get install -y advancecomp gifsicle jhead jpegoptim libjpeg-progs optipng pngcrush pngquant
+      run: sudo apt-get update -y && sudo apt-get install -y advancecomp gifsicle jhead jpegoptim libjpeg-progs optipng pngcrush pngquant
     - name: Middleman Build
       run: bundle exec middleman build
