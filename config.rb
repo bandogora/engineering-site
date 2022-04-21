@@ -58,7 +58,7 @@ configure :build do
     options.threads = true
 
     # Image extensions to attempt to compress
-    options.image_extensions = %w[.svg]
+    options.image_extensions = %w[.svg .png .jpg]
     options.pngout = false
     ENV['SVGO_BIN'] = 'node_modules/svgo/bin/svgo'
   end
