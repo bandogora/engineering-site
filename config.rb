@@ -42,6 +42,7 @@ page '/*.txt', layout: false
 
 # Build-specific configuration
 # https://middlemanapp.com/advanced/configuration/#environment-specific-settings
+config[:build_dir] = 'docs'
 
 configure :build do
   activate :asset_hash
