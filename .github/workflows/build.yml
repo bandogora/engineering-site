@@ -4,12 +4,8 @@ on:
   push:
     branches: [ main ]
 
-defaults:
-  run:
-    working-directory: /
-
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -21,3 +17,13 @@ jobs:
       run: sudo apt-get install -y advancecomp gifsicle jhead jpegoptim libjpeg-turbo-progs optipng pngcrush pngquant
     - name: Middleman Build
       run: bundle exec middleman build
+    - name: switching from HTTPS to SSH
+      run: git remote set-url origin ${{ secrets.ssh }}
+    - name: stage changed files
+      run: git add docs
+    - name: commit changed files
+      run: git commit -m "Auto deploying to docs"
+    - name: fetch from master
+      run: git fetch origin main
+    - name: push code to master
+      run: git push origin main
