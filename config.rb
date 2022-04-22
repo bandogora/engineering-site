@@ -62,4 +62,7 @@ configure :build do
     options.pngout = false
     ENV['SVGO_BIN'] = 'node_modules/svgo/bin/svgo'
   end
+  after_build do
+    FileUtils.cp('CNAME', 'docs/CNAME')
+  end
 end
