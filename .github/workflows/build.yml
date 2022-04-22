@@ -5,7 +5,11 @@ on:
     branches: [ main ]
 
 permissions:
-  contents: read
+  contents: read write
+
+defaults:
+  run:
+    working-directory: docs
 
 jobs:
   build:
@@ -20,4 +24,3 @@ jobs:
       run: sudo apt-get install -y advancecomp gifsicle jhead jpegoptim libjpeg-turbo-progs optipng pngcrush pngquant
     - name: Middleman Build
       run: bundle exec middleman build
-      working-directory: docs
