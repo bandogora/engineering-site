@@ -28,6 +28,6 @@ jobs:
 
     - name: commit
       run: |
-        git add docs
+        git add .
         git commit -m "Auto deploying to docs"
         git push
