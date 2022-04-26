@@ -9,32 +9,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
     - name: Install Imageoptim Binaries
       run: sudo apt-get install -y advancecomp gifsicle jhead jpegoptim libjpeg-turbo-progs optipng pngcrush pngquant
+
+    - name: checkout
+      uses: actions/checkout@v3
+
+    - name: setup git config
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+
     - name: Middleman Build
       run: bundle exec middleman build
-    - name: set git config
-      run: git remote set-url origin https://github.com/bandogora/bandogora.github.io.git
-    - name: stage changed files
-      run: git add docs
-    - name: commit changed files
-      run: git commit -m "Auto deploying to docs"
-    - name: git commit over API
+
+    - name: commit
       run: |
-        curl --request POST \
-        --url https://api.github.com/repos/${{ github.repository }}/git/commits \
-        --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-        --header 'content-type: application/json' \
-        --data '{
-          "message": "Auto deploying to docs",
-          "author": {
-              "name": "${{ github.workflow }}",
-              "email": "<>",
-              "date": "$(date --iso-8601=seconds)"
-            },
-          }' \
-        --fail
+        git add docs
+        git commit -m "Auto deploying to docs"
+        git push
