@@ -18,7 +18,7 @@ jobs:
     - name: Middleman Build
       run: bundle exec middleman build
     - name: switching from HTTPS to SSH
-      run: git remote set-url origin ${{ secrets.ssh }}
+      run: git remote set-url origin https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/bandogora/bandogora.github.io.git
     - name: stage changed files
       run: git add docs
     - name: commit changed files
