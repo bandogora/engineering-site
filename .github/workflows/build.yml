@@ -17,8 +17,12 @@ jobs:
       run: sudo apt-get install -y advancecomp gifsicle jhead jpegoptim libjpeg-turbo-progs optipng pngcrush pngquant
     - name: Middleman Build
       run: bundle exec middleman build
-    - name: switching from HTTPS to SSH
-      run: git remote set-url origin https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/bandogora/bandogora.github.io.git
+    - name: set git config
+      run: |
+        git config --local user.name 'github-actions[bot]'
+        git config --local user.email '<>'
+        echo ${GITHUB_ACTOR}
+        git remote set-url origin https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/bandogora/bandogora.github.io.git
     - name: stage changed files
       run: git add docs
     - name: commit changed files
