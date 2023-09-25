@@ -2,8 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'image_optim'
-gem 'middleman', '~> 4.2'
+gem 'middleman', '~> 4.5'
 gem 'middleman-autoprefixer'
 gem 'middleman-imageoptim', '~> 0.3.0'
 gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby, :x64_mingw]
